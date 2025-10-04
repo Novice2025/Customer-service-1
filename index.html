@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The De-escalation Lesson - Inglês para Negociações Difíceis</title>
+    <!-- Chosen Palette: Dark Professional (Netflix Red/Gold on Dark Gray, plus Formal Blue and Calm Green for differentiation) -->
+    <!-- Application Structure Plan: The structure is a thematic, single-page scrollable lesson divided into 4 "Series" cards. Each Series represents a stage of the de-escalation process (Acknowledge, Manage, Redirect, Handle Extremes). This flow is chosen because it mirrors the psychological stages of de-escalation, making the lesson intuitive for agents. Key interactions are passive reading and active reading via "Teacher Tips." The navigation bar links to these stages. -->
+    <!-- Visualization & Content Choices: Report Info (10 De-escalation Concepts) -> Goal (Teach phrases for difficult scenarios) -> Presentation (Scenario-based cards with robust English explanations, practical phrases, and Teacher Tips/Justification) -> Interaction (Scroll, Clickable Navigation) -> Justification (Familiar card layout keeps content digestible; focus is on clear text/context) -> Library/Method (HTML/Tailwind CSS/Vanilla JS) - Confirming NO SVG/Mermaid. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Poppins:wght=500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Styling for Netflix Clone Feel */
+        :root {
+            --netflix-red: #E50914;
+            --accent-gold: #FFD700;
+            --dark-bg: #141414;
+            --mid-bg: #1F1F1F;
+            --formal-blue: #3b82f6; /* New color for English explanation */
+            --calm-green: #34D399;
+        }
+        body {
+            background-color: var(--dark-bg);
+            color: #FFFFFF;
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s;
+        }
+        .header-nav {
+            background-color: rgba(20, 20, 20, 0.95);
+        }
+        .hero-title {
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        .lesson-card {
+            background-color: var(--mid-bg);
+            border: 1px solid #333;
+            transition: transform 0.2s, box-shadow 0.3s;
+            position: relative;
+            border-radius: 0.75rem;
+        }
+        .lesson-card:hover {
+            transform: scale(1.01);
+            box-shadow: 0 0 30px rgba(229, 9, 20, 0.2);
+        }
+        .highlight-text {
+            color: var(--netflix-red);
+            font-weight: 700;
+        }
+        .highlight-red {
+            color: var(--netflix-red);
+        }
+        /* Style for the main English explanation box (Formal Blue Accent) */
+        .english-explanation-box {
+            background-color: #2b2b2b;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            color: #ccc;
+            border-left: 4px solid var(--formal-blue);
+            margin-top: 1rem;
+        }
+        /* Style for the concise Portuguese translation (Accent Gold Accent) */
+        .pt-translation {
+            background-color: #333333;
+            color: #E0E0E0;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            margin-top: 0.5rem;
+            border-left: 3px solid var(--accent-gold);
+        }
+        .teacher-tip {
+            border: 2px solid var(--calm-green);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            background-color: #102d24;
+            margin-top: 1.5rem;
+        }
+        .flow-core {
+            border: 3px solid var(--accent-gold);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        }
+        .formal-card {
+            border: 2px solid var(--formal-blue);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Header Navigation -->
+    <header class="header-nav fixed top-0 left-0 right-0 z-50 p-4 shadow-xl">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-red-600 font-poppins">NEGOTIATION</h1>
+            <nav class="hidden sm:block">
+                <a href="#series-1" class="text-sm font-medium hover:text-red-500 mx-3 transition-colors">1. Acknowledge</a>
+                <a href="#series-2" class="text-sm font-medium hover:text-red-500 mx-3 transition-colors">2. Manage</a>
+                <a href="#series-3" class="text-sm font-medium hover:text-red-500 mx-3 transition-colors">3. Redirect</a>
+                <a href="#series-4" class="text-sm font-medium hover:text-red-500 mx-3 transition-colors">4. Extremes</a>
+                <a href="#summary" class="text-sm font-medium hover:text-red-500 mx-3 transition-colors">Summary</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-20 pb-10">
+        <!-- HERO Section - Main Feature: De-escalation -->
+        <section class="max-w-7xl mx-auto px-4 mb-12">
+            <div class="relative rounded-xl overflow-hidden shadow-2xl">
+                <div class="h-96 w-full bg-cover bg-center" style="background: linear-gradient(to bottom, rgba(20, 20, 20, 0.1) 0%, var(--dark-bg) 100%), url('https://placehold.co/1280x500/1F1F1F/FFFFFF?text=Conflict+Resolution');">
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                        <p class="text-xl font-medium text-gray-300 mb-2">Skill Training | Challenging Customer Interactions</p>
+                        <h2 class="hero-title text-5xl md:text-7xl font-extrabold text-white mb-4 leading-tight">
+                            The <span class="highlight-red">10 Phrases</span> for De-escalation
+                        </h2>
+                        <p class="max-w-2xl text-lg text-gray-200">
+                            Master the techniques for **Sales Negotiations** and **Challenging Customer Interactions**. Learn to recognize emotions, redirect focus, and maintain call control, even when dealing with highly agitated customers.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The De-escalation Flow -->
+        <section id="the-lesson" class="max-w-7xl mx-auto px-4 my-16">
+            <h3 class="text-4xl font-bold mb-6 text-center border-b-2 border-red-600 pb-2">
+                The De-escalation Flow | Fluxo de Desescalada
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8 text-center">
+                
+                <div class="lesson-card p-4 rounded-lg flow-core">
+                    <p class="text-4xl mb-2 text-yellow-400">👂</p>
+                    <h4 class="text-lg font-bold text-white">ACKNOWLEDGE</h4>
+                    <p class="text-gray-400 italic text-xs">Reconhecer a Emoção</p>
+                </div>
+                
+                <div class="lesson-card p-4 rounded-lg">
+                    <p class="text-4xl mb-2 text-red-500">🛡️</p>
+                    <h4 class="text-lg font-bold text-white">DIFFUSE</h4>
+                    <p class="text-gray-400 italic text-xs">Desarmar a Raiva</p>
+                </div>
+
+                <div class="lesson-card p-4 rounded-lg">
+                    <p class="text-4xl mb-2 text-calm-green">🚦</p>
+                    <h4 class="text-xl font-extrabold text-white">REDIRECT</h4>
+                    <p class="text-gray-200 italic text-xs">Retomar o Foco no Problema</p>
+                </div>
+
+                <div class="lesson-card p-4 rounded-lg">
+                    <p class="text-4xl mb-2 text-formal-blue">🚧</p>
+                    <h4 class="text-lg font-bold text-white">SET BOUNDARY</h4>
+                    <p class="text-gray-400 italic text-xs">Definir Limites de Conduta</p>
+                </div>
+
+                <div class="lesson-card p-4 rounded-lg">
+                    <p class="text-4xl mb-2 text-yellow-500">🤝</p>
+                    <h4 class="text-lg font-bold text-white">CLOSE</h4>
+                    <p class="text-gray-400 italic text-xs">Fechar com Compromisso</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Series 1: Abertura e Validação (Acknowledging & Diffusing) -->
+        <section id="series-1" class="py-10">
+            <h3 class="text-2xl font-bold highlight-red ml-4 mb-4 md:text-3xl max-w-7xl mx-auto px-4 border-l-4 border-red-600 pl-4">
+                Series 1: Acknowledging & Diffusing Anger (Phrases 1 & 2)
+            </h3>
+            
+            <!-- NEW WALKTHROUGH SECTION: Acknowledging & Diffusing (Revised for more English) -->
+            <div class="max-w-7xl mx-auto px-4 mb-8">
+                <div class="p-5 rounded-xl formal-card">
+                    <h4 class="text-xl font-bold text-formal-blue mb-3">Core De-escalation Concepts: Acknowledging, Diffusing, & Active Listening</h4>
+                    <p class="text-gray-300 mb-4">To successfully begin de-escalation, we must master these three psychological movements that prepare the customer to listen:</p>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="p-4 bg-mid-bg border border-gray-600 rounded-lg">
+                            <p class="font-bold text-yellow-400">1. Acknowledging (Reconhecer a Emoção)</p>
+                            <p class="text-sm text-gray-400 mt-1">This is the art of **validating the customer's emotion**. You do not need to agree with the issue, only with the *feeling* they are expressing. The focus is on the **Feeling** (o Sentimento), not the **Fact** (o Fato). <span class="text-calm-green">Example:</span> "I **hear** how **frustrated** you are."</p>
+                            <p class="text-xs italic mt-2 text-white">Result: Moves the customer from **"Attack Mode"** to **"Partnership Mode"** by showing immediate empathy.</p>
+                        </div>
+                        <div class="p-4 bg-mid-bg border border-gray-600 rounded-lg">
+                            <p class="font-bold text-yellow-400">2. Diffusing Anger (Desarmar a Raiva)</p>
+                            <p class="text-sm text-gray-400 mt-1">This is the act of **taking control of the resolution** to shift the focus away from the complaint. It involves setting a clear, high-priority objective. <span class="text-calm-green">Example:</span> "My **priority** is to find a fair and fast solution."</p>
+                            <p class="text-xs italic mt-2 text-white">Result: Transfers the responsibility for *solving* (the problem) to you, the agent, preparing the customer for a move to **Logic**.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- NEW ITEM 3: Active Listening / I Hear You -->
+                    <div class="mt-4">
+                        <div class="p-4 bg-mid-bg border border-gray-600 rounded-lg">
+                            <p class="font-bold text-yellow-400">3. Active Listening (The "I Hear You" Pivot)</p>
+                            <p class="text-sm text-gray-400 mt-1">This is the **immediate verbal cue** used to signal engagement. The phrase "**I hear you**" is short, powerful, and specifically avoids the more judgmental "**I understand**." It focuses the conversation on the *now* (the act of listening) rather than claiming full comprehension of their complex issue. <span class="text-calm-green">Example:</span> "**I hear you**, Mr. Smith, and I'm here to help."</p>
+                            <p class="text-xs italic mt-2 text-white">Result: Creates a brief psychological **pause**, opening a window to insert the *Diffusing Anger* statement (Concept 2) immediately afterward.</p>
+                        </div>
+                    </div>
+                    <!-- END NEW ITEM 3 -->
+                </div>
+            </div>
+            <!-- END NEW WALKTHROUGH SECTION -->
+
+            <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-8">
+                <!-- Scenario A: Acknowledging and validating customer feelings / Angry venting customer / Acknowledge what your customer is feeling -->
+                <div class="lesson-card p-6 rounded-xl">
+                    <h4 class="text-xl font-bold mb-3 text-yellow-400 font-poppins">Scenario A: Emotional Validation (The Angry Venting Customer)</h4>
+                    <p class="text-gray-300 italic mb-4"><span class="highlight-text">Objective:</span> Acknowledge what your customer is feeling to immediately diffuse anger.</p>
+                    <div class="mb-4">
+                        <p class="text-sm font-semibold text-white">Essential Phrase:</p>
+                        <p class="text-lg">"I hear how **frustrating** this is, and I sincerely apologize for the trouble you're going through."</p>
+                        
+                        <div class="english-explanation-box">
+                            <p class="font-bold text-formal-blue">Robust Explanation:</p>
+                            <p class="text-sm">This phrase is the first line of defense. By immediately using strong emotional language (**"frustrating"**) and signaling active listening (**"I hear"**), you validate their experience. This crucial step prevents the customer from focusing purely on venting and opens a path for the logical side of the brain to engage, transforming confrontation into partnership.</p>
+                            <div class="pt-translation">
+                                <p class="text-xs font-semibold text-yellow-300">Tradução Concisa:</p>
+                                <p class="text-sm">"Eu entendo como isso é **frustrante**, e peço desculpas sinceras pelo problema que você está enfrentando."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teacher-tip">
+                        <p class="font-bold text-calm-green">Teacher Tip: I hear vs. Avoid These</p>
+                        <p class="text-sm text-gray-200">Saying **"I hear..."** is more effective than phrases like "I understand," "**I comprehend**," or "**I gather that**." These alternatives focus on your **logical processing** of the *facts*. **"I hear..."** is better because it signals you are processing their *feelings* and validating their **current experience**, which is key when dealing with a customer in the **emotional right brain**.</p>
+                    </div>
+                </div>
+                <!-- Scenario B: Diffuse anger -->
+                <div class="lesson-card p-6 rounded-xl">
+                    <h4 class="text-xl font-bold mb-3 text-yellow-400 font-poppins">Scenario B: Initial Response and De-escalation</h4>
+                    <p class="text-gray-300 italic mb-4"><span class="highlight-text">Objective:</span> Diffuse anger and demonstrate immediate commitment to action.</p>
+                    <div class="mb-4">
+                        <p class="text-sm font-semibold text-white">Essential Phrase:</p>
+                        <p class="text-lg">"My **primary goal** right now is to find a fair and fast resolution for you. Let's start with..."</p>
+                        
+                        <div class="english-explanation-box">
+                            <p class="font-bold text-formal-blue">Robust Explanation:</p>
+                            <p class="text-sm">After the initial validation, establish your high-level goal. The term **"primary goal"** (a phrase often used in sales negotiations) sets a professional, results-oriented tone. You are not debating the past; you are defining the future. This redirection stops the customer from repeating their complaint and focuses them on the immediate next step.</p>
+                            <div class="pt-translation">
+                                <p class="text-xs font-semibold text-yellow-300">Tradução Concisa:</p>
+                                <p class="text-sm">"Minha **meta principal** agora é encontrar uma resolução justa e rápida para você. Vamos começar com..."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teacher-tip">
+                        <p class="font-bold text-calm-green">Teacher Tip: Focus on the Process</p>
+                        <p class="text-sm text-gray-200">Do not promise the final outcome. Promise the **process** and the **effort**. Defining your **"primary goal"** establishes trust and aligns the objective, positioning you as an ally, not an obstacle.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Series 2: Gerenciamento de Crise (Managing Expectations & Bad News) -->
+        <section id="series-2" class="py-10">
+            <h3 class="text-2xl font-bold highlight-red ml-4 mb-4 md:text-3xl max-w-7xl mx-auto px-4 border-l-4 border-red-600 pl-4">
+                Series 2: Managing Expectations & Delivering Bad News (Phrases 3 & 4)
+            </h3>
+            <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-8">
+                <!-- Scenario C: Delivering bad news -->
+                <div class="lesson-card p-6 rounded-xl">
+                    <h4 class="text-xl font-bold mb-3 text-yellow-400 font-poppins">Scenario C: Softening the Negative Answer</h4>
+                    <p class="text-gray-300 italic mb-4"><span class="highlight-text">Objective:</span> Delivering bad news while mitigating further conflict and focusing on the available solution.</p>
+                    <div class="mb-4">
+                        <p class="text-sm font-semibold text-white">Essential Phrase:</p>
+                        <p class="text-lg">"Based on our policy, the **best I can offer** is a partial credit. I know this isn't what you hoped for."</p>
+                        
+                        <div class="english-explanation-box">
+                            <p class="font-bold text-formal-blue">Robust Explanation:</p>
+                            <p class="text-sm">When you have to say no, frame it as the **best possible yes**. By stating **"the best I can offer"**, you communicate that you have exhausted your options and are giving them the maximum value within your power. Always follow the bad news immediately with a phrase of empathy (**"I know this isn't what you hoped for"**).</p>
+                            <div class="pt-translation">
+                                <p class="text-xs font-semibold text-yellow-300">Tradução Concisa:</p>
+                                <p class="text-sm">"Com base na nossa política, o **máximo que posso oferecer** é um crédito parcial. Eu sei que não é o que você esperava."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teacher-tip">
+                        <p class="font-bold text-calm-green">Teacher Tip: The Bad News Sandwich</p>
+                        <p class="text-sm text-gray-200">Structure the answer: **1. Softener** ("I know this is tough") + **2. The News** ("The best I can do is...") + **3. The Next Action** ("How about I process this for you now?"). Deliver the solution and the constraint **together**.</p>
+                    </div>
+                </div>
+                <!-- Scenario D: Managing expectations efficiently / Covers challenging customer interactions -->
+                <div class="lesson-card p-6 rounded-xl">
+                    <h4 class="text-xl font-bold mb-3 text-yellow-400 font-poppins">Scenario D: Aligning Time Expectations</h4>
+                    <p class="text-gray-300 italic mb-4"><span class="highlight-text">Objective:</span> Managing expectations efficiently in challenging customer interactions using specific commitments.</p>
+                    <div class="mb-4">
+                        <p class="text-sm font-semibold text-white">Essential Phrase:</p>
+                        <p class="text-lg">"What I can **confirm right now** is that I will personally follow up and get back to you **by 3 PM tomorrow**."</p>
+                        
+                        <div class="english-explanation-box">
+                            <p class="font-bold text-formal-blue">Robust Explanation:</p>
+                            <p class="text-sm">In high-stakes situations, vague promises destroy trust. Use clear, quantifiable commitments. **"Confirm right now"** focuses on what is actionable immediately. Always commit to specific, measurable deadlines (**"by 3 PM tomorrow"**) and personal accountability (**"I will personally follow up"**) to reduce anxiety about next steps.</p>
+                            <div class="pt-translation">
+                                <p class="text-xs font-semibold text-yellow-300">Tradução Concisa:</p>
+                                <p class="text-sm">"O que eu posso **confirmar neste momento** é que eu vou acompanhar pessoalmente e te retorno **até amanhã às 15h**."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teacher-tip">
+                        <p class="font-bold text-calm-green">Teacher Tip: Specificity Triumphs Vague Promises</p>
+                        <p class="text-sm text-gray-200">Always include the **WHO** (I will personally), the **WHAT** (follow up), and the **WHEN** (by 3 PM tomorrow). This rebuilds confidence, even when the resolution timeline is long.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Series 3: Controle e Direção (Steering & Setting Boundaries) -->
+        <section id="series-3" class="py-10">
+            <h3 class="text-2xl font-bold highlight-red ml-4 mb-4 md:text-3xl max-w-7xl mx-auto px-4 border-l-4 border-red-600 pl-4">
+                Series 3: Steering & Setting Boundaries (Phrases 5 & 6)
+            </h3>
+            <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-8">
+                <!-- Scenario E: Steering customers -->
+                <div class="lesson-card p-6 rounded-xl">
+                    <h4 class="text-xl font-bold mb-3 text-yellow-400 font-poppins">Scenario E: Redirecting Focus (The Gentle Steer)</h4>
+                    <p class="text-gray-300 italic mb-4"><span class="highlight-text">Objective:</span> Steering customers back to facts after excessive venting or off-topic information.</p>
+                    <div class="mb-4">
+                        <p class="text-sm font-semibold text-white">Essential Phrase:</p>
+                        <p class="text-lg">"Thank you for sharing, but **to help me resolve this now**, I need to focus on X. Can you confirm the order number?"</p>
+                        
+                        <div class="english-explanation-box">
+                            <p class="font-bold text-formal-blue">Robust Explanation:</p>
+                            <p class="text-sm">Use this phrase when the customer deviates significantly from the core issue. The key is to make the redirection seem like the **fastest path to their desired outcome**. By stating **"to help me resolve this now"**, you politely link the focus back to the solution. Always follow up with a closed-ended question (confirm the order number) to regain control.</p>
+                            <div class="pt-translation">
+                                <p class="text-xs font-semibold text-yellow-300">Tradução Concisa:</p>
+                                <p class="text-sm">"Obrigado por compartilhar, mas **para me ajudar a resolver isso agora**, preciso focar em X. Você pode confirmar o número do pedido?"</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teacher-tip">
+                        <p class="font-bold text-calm-green">Teacher Tip: The Soft 'But' Rule</p>
+                        <p class="text-sm text-gray-200">Acknowledge the tangent ("Thank you for sharing"), but use **"but"** strategically to pivot. The redirection must be framed as a step *benefiting* the customer, not just controlling the conversation.</p>
+                    </div>
+                </div>
+                <!-- Scenario F: Setting boundaries -->
+                <div class="lesson-card p-6 rounded-xl">
+                    <h4 class="text-xl font-bold mb-3 text-yellow-400 font-poppins">Scenario F: Maintaining Professional Tone</h4>
+                    <p class="text-gray-300 italic mb-4"><span class="highlight-text">Objective:</span> Setting boundaries on behavior while maintaining a commitment to service.</p>
+                    <div class="mb-4">
+                        <p class="text-sm font-semibold text-white">Essential Phrase:</p>
+                        <p class="text-lg">"I am committed to finding a solution, but I need us to **maintain a professional tone** to continue the process."</p>
+                        
+                        <div class="english-explanation-box">
+                            <p class="font-bold text-formal-blue">Robust Explanation:</p>
+                            <p class="text-sm">When volume or personal attacks escalate, boundaries are necessary. Frame the boundary as a **conditional necessity** for success. The boundary is about the **tone** (maintain a professional tone), not about the customer's **anger**. This phrasing makes it about the process, not about shutting down their emotion.</p>
+                            <div class="pt-translation">
+                                <p class="text-xs font-semibold text-yellow-300">Tradução Concisa:</p>
+                                <p class="text-sm">"Eu estou empenhado em encontrar uma solução, mas preciso que mantenhamos um **tom profissional** para continuar o processo."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teacher-tip">
+                        <p class="font-bold text-calm-green">Teacher Tip: Commitment First</p>
+                        <p class="text-sm text-gray-200">Always start setting boundaries with a phrase of **commitment** ("I am committed to helping") before imposing the rule. This softens the imposition and assures the customer that your goal is still assistance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Series 4: Extremos e Fechamento (Handling Extremes) -->
+        <section id="series-4" class="py-10">
+            <h3 class="text-2xl font-bold highlight-red ml-4 mb-4 md:text-3xl max-w-7xl mx-auto px-4 border-l-4 border-red-600 pl-4">
+                Series 4: Handling Extremes (Phrases 7-10)
+            </h3>
+            <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-8">
+                <!-- Scenario G: Customers venting excessively are in the emotional right brain -->
+                <div class="lesson-card p-6 rounded-xl">
+                    <h4 class="text-xl font-bold mb-3 text-yellow-400 font-poppins">Scenario G: The Excessive Vent (Right Brain Dominance)</h4>
+                    <p class="text-gray-300 italic mb-4"><span class="highlight-text">Objective:</span> Manage customers venting excessively who are stuck in the emotional right brain by forcing logical engagement.</p>
+                    <div class="mb-4">
+                        <p class="text-sm font-semibold text-white">Essential Phrase:</p>
+                        <p class="text-lg">"I understand you need to vent, but if you tell me **what you need specifically**, I can move much faster on your request."</p>
+                        
+                        <div class="english-explanation-box">
+                            <p class="font-bold text-formal-blue">Robust Explanation:</p>
+                            <p class="text-sm">Excessive venting is a symptom of right-brain dominance. To engage the logical left brain, ask for **specificity**. By requesting **"what you need specifically"**, you challenge them to articulate a concrete demand, breaking the cycle of vague, emotional complaints. This gives them a choice: vent (slow) or solve (fast).</p>
+                            <div class="pt-translation">
+                                <p class="text-xs font-semibold text-yellow-300">Tradução Concisa:</p>
+                                <p class="text-sm">"Eu entendo que você precisa desabafar, mas se você me disser **o que você precisa especificamente**, eu posso avançar muito mais rápido no seu pedido."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teacher-tip">
+                        <p class="font-bold text-calm-green">Teacher Tip: Demand Specificity</p>
+                        <p class="text-sm text-gray-200">Emotional processing is rarely specific. Forcing the customer to provide a specific data point or request engages their critical thinking, successfully moving them from the emotional feedback loop to the problem-solving stage.</p>
+                    </div>
+                </div>
+                <!-- Scenario H: Handling customers who are cursing -->
+                <div class="lesson-card p-6 rounded-xl">
+                    <h4 class="text-xl font-bold mb-3 text-yellow-400 font-poppins">Scenario H: Dealing with Abusive Language</h4>
+                    <p class="text-gray-300 italic mb-4"><span class="highlight-text">Objective:</span> Handling customers who are cursing by issuing a clear, final warning that transfers responsibility back to them.</p>
+                    <div class="mb-4">
+                        <p class="text-sm font-semibold text-white">Essential Phrase:</p>
+                        <p class="text-lg">"I am unable to continue the call if you use that language. **Are you ready to continue with a professional tone?**"</p>
+                        
+                        <div class="english-explanation-box">
+                            <p class="font-bold text-formal-blue">Robust Explanation:</p>
+                            <p class="text-sm">This is the final boundary-setting measure. State the consequence clearly (**"I am unable to continue"**), but always follow it with an **opportunity question** (**"Are you ready to continue..."**). This gives the customer a final chance to self-correct, confirming they were warned and made a conscious choice regarding their conduct.</p>
+                            <div class="pt-translation">
+                                <p class="text-xs font-semibold text-yellow-300">Tradução Concisa:</p>
+                                <p class="text-sm">"Não posso continuar a chamada se você usar essa linguagem. **Você está pronto para continuar com um tom profissional?**"</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teacher-tip">
+                        <p class="font-bold text-calm-green">Teacher Tip: The Calm Ultimatum</p>
+                        <p class="text-sm text-gray-200">This phrase implies an **imminent end** to the communication. Deliver it calmly. The power is in the transfer of responsibility: the customer must now answer whether they want to proceed respectfully.</p>
+                    </div>
+                </div>
+
+                <!-- Scenario I: The Threat of Legal Action (NEW) -->
+                <div class="lesson-card p-6 rounded-xl">
+                    <h4 class="text-xl font-bold mb-3 text-yellow-400 font-poppins">Scenario I: The Threat of External Action (Legal, Executive)</h4>
+                    <p class="text-gray-300 italic mb-4"><span class="highlight-text">Objective:</span> Neutralize a high-level threat by calmly accepting it and immediately redirecting to the current available solution.</p>
+                    <div class="mb-4">
+                        <p class="text-sm font-semibold text-white">Essential Phrase:</p>
+                        <p class="text-lg">"I understand you feel that is necessary, and I can document your concern. However, I am still the person **authorized to provide your current solution**. Let's review that now."</p>
+                        
+                        <div class="english-explanation-box">
+                            <p class="font-bold text-formal-blue">Robust Explanation:</p>
+                            <p class="text-sm">When a customer threatens legal or executive action, they are trying to escalate power. Do not argue. Acknowledge the threat neutrally (**"I understand you feel that is necessary"**) and immediately define your **current authority** (**"I am still the person authorized..."**). This re-centers the conversation on the actionable path you control, making the threat a parallel, non-urgent process.</p>
+                            <div class="pt-translation">
+                                <p class="text-xs font-semibold text-yellow-300">Tradução Concisa:</p>
+                                <p class="text-sm">"Eu entendo que você sente que isso é necessário e posso documentar sua preocupação. No entanto, eu ainda sou a pessoa **autorizada a fornecer a sua solução atual**. Vamos revisar isso agora."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teacher-tip">
+                        <p class="font-bold text-calm-green">Teacher Tip: Neutral Acceptance</p>
+                        <p class="text-sm text-gray-200">Avoid judgment or alarm. Your calm acceptance reduces the threat's power. By offering to "document" it, you complete the action associated with the threat, then pull the focus back to your immediate, valuable task.</p>
+                    </div>
+                </div>
+
+                <!-- Scenario J: The Demand for a Supervisor (NEW) -->
+                <div class="lesson-card p-6 rounded-xl">
+                    <h4 class="text-xl font-bold mb-3 text-yellow-400 font-poppins">Scenario J: Controlling the Supervisor Request</h4>
+                    <p class="text-gray-300 italic mb-4"><span class="highlight-text">Objective:</span> Control the request for escalation by defining mandatory pre-requisite steps, often leading to a resolution before the transfer.</p>
+                    <div class="mb-4">
+                        <p class="text-sm font-semibold text-white">Essential Phrase:</p>
+                        <p class="text-lg">"I'm happy to ask my supervisor to review this, but I am required to complete X, Y, and Z steps first. **To save you time, let's complete those steps together now**."</p>
+                        
+                        <div class="english-explanation-box">
+                            <p class="font-bold text-formal-blue">Robust Explanation:</p>
+                            <p class="text-sm">This is a soft delay and a power redirection. You don't deny the request (**"I'm happy to ask..."**), but you introduce mandatory, non-negotiable steps (**"required to complete X, Y, and Z"**). The appeal to their self-interest (**"To save you time"**) incentivizes them to cooperate with your process, often leading to a resolution without needing the actual transfer.</p>
+                            <div class="pt-translation">
+                                <p class="text-xs font-semibold text-yellow-300">Tradução Concisa:</p>
+                                <p class="text-sm">"Eu terei prazer em pedir ao meu supervisor para revisar isso, mas sou obrigado a completar as etapas X, Y, Z primeiro. **Para economizar seu tempo, vamos completar essas etapas juntos agora**."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teacher-tip">
+                        <p class="font-bold text-calm-green">Teacher Tip: The Authority Pivot</p>
+                        <p class="text-sm text-gray-200">The customer believes the manager has more power. You pivot by saying the *process* requires steps *you* control. By getting them to engage in the next logical step, you take control of the interaction and the outcome.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- NEW: KEY TERMS TABLE -->
+        <section id="key-terms-table" class="max-w-7xl mx-auto px-4 my-16">
+            <h3 class="text-2xl font-bold mb-6 text-center text-yellow-400 border-b-2 border-yellow-400 pb-2">
+                Key Terminology Checkpoint
+            </h3>
+            <div class="lesson-card p-6 rounded-xl shadow-2xl">
+                <table class="min-w-full divide-y divide-gray-700">
+                    <thead class="bg-mid-bg">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-red-500 uppercase tracking-wider w-1/3">
+                                Termo Chave (Key Term)
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-red-500 uppercase tracking-wider w-2/3">
+                                Aplicação Prática no Trabalho (Practical Sentence at Work)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-800">
+                        <tr class="hover:bg-gray-800">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">Acknowledging</td>
+                            <td class="px-6 py-4 text-sm text-gray-300">"I recognize how frustrating this delay has been for you."</td>
+                        </tr>
+                        <tr class="hover:bg-gray-800">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">Diffusing Anger</td>
+                            <td class="px-6 py-4 text-sm text-gray-300">"My **primary goal** is to find a fair solution; let me take control of this issue now."</td>
+                        </tr>
+                        <tr class="hover:bg-gray-800">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">I hear you</td>
+                            <td class="px-6 py-4 text-sm text-gray-300">"**I hear you**, Mr. Jones, and I have the steps ready to move forward."</td>
+                        </tr>
+                        <tr class="hover:bg-gray-800">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">Quick resolution</td>
+                            <td class="px-6 py-4 text-sm text-gray-300">"To ensure a **quick resolution**, can you provide the account number?"</td>
+                        </tr>
+                        <tr class="hover:bg-gray-800">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">further conflict</td>
+                            <td class="px-6 py-4 text-sm text-gray-300">"We want to avoid any **further conflict** by clarifying the terms right away."</td>
+                        </tr>
+                        <tr class="hover:bg-gray-800">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">I have exhausted my options</td>
+                            <td class="px-6 py-4 text-sm text-gray-300">"Based on the system, **I have exhausted my options**, but let me check one final resource."</td>
+                        </tr>
+                        <tr class="hover:bg-gray-800">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">high-stakes situations</td>
+                            <td class="px-6 py-4 text-sm text-gray-300">"In **high-stakes situations**, it is critical to use precise language and timelines."</td>
+                        </tr>
+                        <tr class="hover:bg-gray-800">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">personal accountability</td>
+                            <td class="px-6 py-4 text-sm text-gray-300">"I take **personal accountability** for ensuring this follow-up happens by 3 PM."</td>
+                        </tr>
+                        <tr class="hover:bg-gray-800">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">constraint</td>
+                            <td class="px-6 py-4 text-sm text-gray-300">"The system has a **constraint** that prevents us from processing a refund until tomorrow."</td>
+                        </tr>
+                        <tr class="hover:bg-gray-800">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">resolution timeline</td>
+                            <td class="px-6 py-4 text-sm text-gray-300">"What is your ideal **resolution timeline** so I can manage expectations internally?"</td>
+                        </tr>
+                        <tr class="hover:bg-gray-800">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">Steering customers back</td>
+                            <td class="px-6 py-4 text-sm text-gray-300">"**Steering customers back** to facts involves asking closed-ended questions."</td>
+                        </tr>
+                        <tr class="hover:bg-gray-800">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">Acknowledge the tangent</td>
+                            <td class="px-6 py-4 text-sm text-gray-300">"**Acknowledge the tangent** briefly, then immediately pivot back to the problem at hand."</td>
+                        </tr>
+                        <tr class="hover:bg-gray-800">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">I understand you need to vent</td>
+                            <td class="px-6 py-4 text-sm text-gray-300">"**I understand you need to vent**, but to help you, I need your ticket number."</td>
+                        </tr>
+                        <tr class="hover:bg-gray-800">
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">defining mandatory pre-requisite steps</td>
+                            <td class="px-6 py-4 text-sm text-gray-300">"I am required to complete **mandatory pre-requisite steps** before escalating to a manager."</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <!-- END NEW KEY TERMS TABLE -->
+
+        <!-- Summary Zone -->
+        <section id="summary" class="max-w-xl mx-auto px-4 my-16 text-center">
+            <div class="p-8 rounded-xl bg-red-700 bg-opacity-20 border-2 border-red-600 shadow-lg">
+                <h3 class="text-3xl font-bold text-yellow-400 mb-4 font-poppins">
+                    Executive Summary | The Core Principle
+                </h3>
+                <p class="text-lg text-gray-200 max-w-3xl mx-auto">
+                    De-escalation is not about being right; it's about **acknowledging emotion, redirecting focus, and seizing control** of the narrative. Use the structure: **Acknowledge** (Validate the pain) &rarr; **Redirect** (Ask for a fact) &rarr; **Commit** (Promise the next action).
+                </p>
+                <div class="mt-6 text-xl text-white font-bold">
+                    Your goal is to move the customer from the **Right Brain (Emotion)** to the **Left Brain (Logic)**.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-6 text-gray-500 text-sm border-t border-gray-800 mt-10">
+        @ Daby
+    </footer>
+
+    <script type="module">
+        // MARK: FIREBASE SETUP (Mandatory for all Immersives)
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        
+        const initializeFirebase = async () => {
+            try {
+                const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+                const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
+                const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+                if (firebaseConfig) {
+                    const app = initializeApp(firebaseConfig);
+                    const db = getFirestore(app);
+                    const auth = getAuth(app);
+
+                    if (initialAuthToken) {
+                        await signInWithCustomToken(auth, initialAuthToken);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                    console.log("Firebase initialized and authenticated.");
+                } else {
+                    console.warn("Firebase config not available. Proceeding without Firebase.");
+                }
+            } catch (error) {
+                console.error("Error initializing Firebase:", error);
+            }
+        };
+        
+        // Initialize Firebase when the window loads
+        window.onload = () => {
+            initializeFirebase();
+        };
+    </script>
+</body>
+</html>
